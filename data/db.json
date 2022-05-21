@@ -1,0 +1,18 @@
+ {
+     "blogs": [
+         {
+      
+            "title": "Journey of the BlueEyeGod", 
+            "Body": "It all started in March 20th 2021", 
+            "author": "BlueEyeGod", 
+            "id": 1
+        },
+         {
+      
+            "title": "Journey of the BlueEyeGod", 
+            "Body": "It all started in March 20th 2021", 
+            "author": "BlueEyeGod", 
+            "id": 2
+        }
+     ]
+  }     

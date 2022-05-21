@@ -1,22 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import BlogList from "./BlogList";
+
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        { title: 'Journey of the BlueEyeGod', Body: 'It all started in March 20th 2021', author: 'BlueEyeGod', id: 1},
-        { title: 'Journey of Melford The Great', Body: 'It all started in March 20th 2021', author: 'Melford', id: 2},
-        { title: 'Journey of Eke The Great', Body: 'It all started in March 20th 2021', author: 'Eke', id: 3},
-        { title: 'Journey of Pavlo The Great', Body: 'It all started in March 20th 2021', author: 'Pavlo', id: 4},
-        { title: 'Journey of  Otuden The Great', Body: 'It all started in March 20th 2021', author: 'Otuden', id: 5}
-    ]);
+    const [blogs, setBlogs] = useState(null);
+    const [isPending, setIsPending] = useState(true)
+
+    useEffect(() =>{
+        fetch('http://localhost:8000/blogs')
+        .then(res =>{
+            return res.json()
+        })
+        .then(data => {
+            setBlogs(data);
+            setIsPending(false);
+        })
+    }, []);
 
     return (  
         <div className="home">
-            {blogs.map((blogs) => (
-                <div className="blog-preview" key={blogs.id}>
-                    <h2>{ blogs.title }</h2>
-                    <p>Written by {blogs.author}</p>
-                </div>
-            ))}
-        </div>
+            <h2>All Blogs</h2>
+            {isPending && <div> Loading... </div>}
+           { blogs && <BlogList blogs={blogs}  title="All Blogs!"/>}
+        </div>      
     );
 }
  
